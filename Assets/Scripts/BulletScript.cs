@@ -26,8 +26,10 @@ public class BulletScript : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        other.gameObject.SendMessage("Hit", damageValue);
-
+        if(other.gameObject.tag == "Troll"){
+            other.gameObject.SendMessage("Hit", damageValue);
+        }
+        Debug.Log("other: " + other);
         explosion.gameObject.transform.parent = null;
         explosion.gameObject.SetActive(true);
 
