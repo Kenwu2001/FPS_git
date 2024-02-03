@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class BulletScript : MonoBehaviour
 {
-    public float FlyingSpeed = 80;
-    public float LifeTime = 5;
+    public float FlyingSpeed;
+    public float LifeTime;
+    public GameObject explosion;
 
     public void InitAndShoot(Vector3 Direction)
     {
@@ -26,6 +27,10 @@ public class BulletScript : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         other.gameObject.SendMessage("Hit", damageValue);
+
+        explosion.gameObject.transform.parent = null;
+        explosion.gameObject.SetActive(true);
+
         KillYourself();
     }
 }
