@@ -26,10 +26,10 @@ public class BulletScript : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Troll"){
+        if(other.gameObject.layer == LayerMask.NameToLayer("Monster") || other.gameObject.layer == LayerMask.NameToLayer("Building")){
+            Debug.Log("other: " + other);
             other.gameObject.SendMessage("Hit", damageValue);
         }
-        Debug.Log("other: " + other);
         explosion.gameObject.transform.parent = null;
         explosion.gameObject.SetActive(true);
 
