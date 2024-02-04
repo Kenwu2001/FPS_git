@@ -28,10 +28,6 @@ public class MonsterScript : MonoBehaviour
         if (PlayerSensor.CollisionObjects.Count > 0)
         {
             FollowTarget = PlayerSensor.CollisionObjects[0].gameObject;
-            Debug.Log("this is : " + PlayerSensor.CollisionObjects[0].gameObject);
-        }
-        else{
-            FollowTarget = null;
         }
 
         if (CurrentHP > 0 && HitCounter > 0)
@@ -48,7 +44,6 @@ public class MonsterScript : MonoBehaviour
                     lookAt.y = this.gameObject.transform.position.y;
                     this.transform.LookAt(lookAt);
                     animator.SetBool("Run", true);
-                    Debug.Log("wowowow is hererer!!!" + FollowTarget);
 
 
                     if (AttackSensor.CollisionObjects.Count > 0)
@@ -61,10 +56,6 @@ public class MonsterScript : MonoBehaviour
                         animator.SetBool("Attack", false);
                         rigidBody.velocity = this.transform.forward * MoveSpeed;
                     }
-                }
-                else
-                {
-                    animator.SetBool("Run", false);                 
                 }
             }
             else

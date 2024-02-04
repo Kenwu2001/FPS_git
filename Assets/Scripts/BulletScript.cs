@@ -27,10 +27,11 @@ public class BulletScript : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.layer != LayerMask.NameToLayer("Terrain")){
-            Debug.Log("other: " + other);
+        if(other.gameObject.layer != LayerMask.NameToLayer("Terrain")){ // can just hit sm_vehicles_01
+            // Debug.Log("other: " + other);
             other.gameObject.SendMessage("Hit", damageValue);
         }
+        // Debug.Log("other: " + other);
         explosion.gameObject.transform.parent = null;
         explosion.gameObject.SetActive(true);
 
