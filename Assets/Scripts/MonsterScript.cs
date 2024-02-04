@@ -9,8 +9,9 @@ public class MonsterScript : MonoBehaviour
     private float MinimumHitPeriod = 1f;
     private float HitCounter = 0;
     public float CurrentHP = 100;
+    private bool IsHit = false;
 
-    public float MoveSpeed;
+    public float MoveSpeed = 2.0f;
     public GameObject FollowTarget;
     private Rigidbody rigidBody;
     public CollisionListScript PlayerSensor;
@@ -33,6 +34,10 @@ public class MonsterScript : MonoBehaviour
         {
             FollowTarget = null;
             animator.SetBool("Run", false);
+        }
+        if(IsHit)
+        {
+            FollowTarget = GameObject.FindGameObjectWithTag("Player");
         }
         Debug.Log("the followtarget is :" + FollowTarget);
 
@@ -75,6 +80,8 @@ public class MonsterScript : MonoBehaviour
     {
         if (HitCounter <= 0)
         {
+            IsHit = true;
+            // FollowTarget = GameObject.FindGameObjectWithTag("Player");
             HitCounter = MinimumHitPeriod;
             CurrentHP -= value;
 
