@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public class MonsterScript : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class MonsterScript : MonoBehaviour
     private Rigidbody rigidBody;
     public CollisionListScript PlayerSensor;
     public CollisionListScript AttackSensor;
+    [SerializeField] FloatingHealthBar healthBar;
 
     public void AttackPlayer()
     {
@@ -25,11 +27,17 @@ public class MonsterScript : MonoBehaviour
         }
     }
     
+    void Awake()
+    {
+        healthBar = GetComponentInChildren<FloatingHealthBar>();
+    }
     // Use this for initialization
     void Start()
     {
         animator = this.GetComponent<Animator>();
         rigidBody = this.GetComponent<Rigidbody>();
+        // healthBar = GetComponentInChildren<FloatingHealthBar>();
+        healthBar.UpdataHealthBar(CurrentHP);
     }
     void Update()
     {
@@ -92,6 +100,7 @@ public class MonsterScript : MonoBehaviour
             // FollowTarget = GameObject.FindGameObjectWithTag("Player");
             HitCounter = MinimumHitPeriod;
             CurrentHP -= value;
+            healthBar.UpdataHealthBar(CurrentHP);
 
             animator.SetFloat("HP", CurrentHP);
             animator.SetTrigger("Hit");

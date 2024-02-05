@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/WarZone/Scene/PrewScene.unity
+    guid: cbb1223711a1d34438ea4946072b0493
   m_configObjects: {}

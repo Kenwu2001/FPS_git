@@ -55,8 +55,8 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-        if (Input.GetMouseButton(0))
+        // Cursor.lockState = CursorLockMode.Locked;
+        if (Input.GetMouseButton(0) || Input.GetKeyDown(KeyCode.K))
         {
             gunManager.TryToTriggerGun();
         }
