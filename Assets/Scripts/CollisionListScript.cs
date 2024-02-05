@@ -9,12 +9,12 @@ public class CollisionListScript : MonoBehaviour
     public void OnTriggerEnter(Collider other)
     {
         CollisionObjects.Add(other);
-        Debug.Log("111111111111111111");
+        // Debug.Log("111111111111111111");
     }
 
     public void OnTriggerExit(Collider other)
     {
         CollisionObjects.Remove(other);
-        Debug.Log("2222222222222222222222222");
+        // Debug.Log("2222222222222222222222222");
     }
 }

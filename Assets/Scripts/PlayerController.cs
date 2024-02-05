@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     public float currentRotateX = 0;
     public float MoveSpeed;
     float currentSpeed = 0;
+    public ShrinkToHalf shrinkCircle; // ShrinkToHalf 物件的參考
+    public float damagePerSecond = 10f; // 每秒造成的傷害
 
     public Rigidbody rigidBody;
 
@@ -20,7 +22,8 @@ public class PlayerController : MonoBehaviour
     public GunManager gunManager;
     public GameUIManager uiManager;
     public int hp = 100;
-    
+    private float lastHitTime;
+
     // Use this for initialization
     void Start()
     {
@@ -51,9 +54,29 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    bool IsOutsideShrinkCircle()
+    {
+        Vector3 playerPosition = transform.position;
+        Vector3 circlePosition = shrinkCircle.transform.position;
+        Vector3 playerPositionXZ = new Vector3(playerPosition.x, 0, playerPosition.z);
+        Vector3 circlePositionXZ = new Vector3(circlePosition.x, 0, circlePosition.z);
+        float distanceToCenter = Vector3.Distance(playerPositionXZ, circlePositionXZ);
+        // 計算玩家與 ShrinkToHalf 物件中心的距離
+        // float distanceToCenter = Vector3.Distance(transform.position, shrinkCircle.transform.position);
+        Debug.Log("player distance: " + distanceToCenter);
+        Debug.Log("circle distance: " + shrinkCircle.transform.localScale.x);
+
+        // 如果距離大於 ShrinkToHalf 物件的半徑，則玩家在物件的外部
+        return distanceToCenter/100 > shrinkCircle.transform.localScale.x;
+    }
+
     // Update is called once per frame
     void Update()
     {
+        // Renderer renderer = shrinkCircle.GetComponent<Renderer>();
+        // Vector3 size = renderer.bounds.size;
+        // Debug.Log("Length of shrinkCircle: " + size.x);
+
         Cursor.visible = false;
         // Cursor.lockState = CursorLockMode.Locked;
         if (Input.GetMouseButton(0) || Input.GetKeyDown(KeyCode.K))
@@ -105,6 +128,15 @@ public class PlayerController : MonoBehaviour
             currentRotateX = -90;
         }
         rotateXTransform.transform.localEulerAngles = new Vector3(-currentRotateX, 0, 0);
+
+        if (IsOutsideShrinkCircle() && Time.time - lastHitTime >= 1f)
+        {
+            // 如果玩家在物件的外部，則對玩家造成傷害
+            Debug.Log("hihihihihihihihihihihihihihihih");
+            // Hit((int)(damagePerSecond * Time.deltaTime));
+            Hit((int)(2));
+            lastHitTime = Time.time;
+        }
 
     }
 }

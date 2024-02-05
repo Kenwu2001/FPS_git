@@ -504,6 +504,8 @@ MonoBehaviour:
   rotateSpeed: 0.1
   currentRotateX: 0
   MoveSpeed: 5
+  shrinkCircle: {fileID: 8296172667400994669}
+  damagePerSecond: 10
   rigidBody: {fileID: 244654462}
   JumpSensor: {fileID: 577120831}
   JumpSpeed: 5
@@ -1411,7 +1413,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0.86779547, b: 0.7794118, a: 1}
-  m_Intensity: 1
+  m_Intensity: 1.3
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -8930,7 +8932,7 @@ Transform:
   m_GameObject: {fileID: 8296172667400994668}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 161.737, y: -6.4, z: -294.4}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 1, z: 0.5}
   m_Children:
   - {fileID: 5688198270121165259}
   - {fileID: 4505181613536026842}
@@ -9197,6 +9199,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5006512736594251135}
+  - component: {fileID: 8296172667400994669}
   m_Layer: 0
   m_Name: ZoneWall
   m_TagString: Untagged
@@ -9204,3 +9207,16 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &8296172667400994669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8296172667400994668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9f94eeaed223eb41a69f740979b74c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shrinkSpeed: 0.1

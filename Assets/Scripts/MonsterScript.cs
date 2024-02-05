@@ -41,7 +41,7 @@ public class MonsterScript : MonoBehaviour
     }
     void Update()
     {
-        Debug.Log("cnt is :" + PlayerSensor.CollisionObjects.Count);
+        // Debug.Log("cnt is :" + PlayerSensor.CollisionObjects.Count);
         if (PlayerSensor.CollisionObjects.Count > 0)
         {
             FollowTarget = PlayerSensor.CollisionObjects[0].gameObject;
@@ -55,7 +55,7 @@ public class MonsterScript : MonoBehaviour
         {
             FollowTarget = GameObject.FindGameObjectWithTag("Player");
         }
-        Debug.Log("the followtarget is :" + FollowTarget);
+        // Debug.Log("the followtarget is :" + FollowTarget);
 
         if (CurrentHP > 0 && HitCounter > 0) // hit or just be hit, stopping running
         {
