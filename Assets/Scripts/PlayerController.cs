@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     float currentSpeed = 0;
     public ShrinkToHalf shrinkCircle; // ShrinkToHalf 物件的參考
     public float damagePerSecond = 10f; // 每秒造成的傷害
+    // public Canvas canvasMenu;
 
     public Rigidbody rigidBody;
 
@@ -28,6 +29,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         animatorController = this.GetComponent<Animator>();
+        // canvasMenu.enabled = false;
     }
 
     public void Hit(int value)
@@ -63,8 +65,8 @@ public class PlayerController : MonoBehaviour
         float distanceToCenter = Vector3.Distance(playerPositionXZ, circlePositionXZ);
         // 計算玩家與 ShrinkToHalf 物件中心的距離
         // float distanceToCenter = Vector3.Distance(transform.position, shrinkCircle.transform.position);
-        Debug.Log("player distance: " + distanceToCenter);
-        Debug.Log("circle distance: " + shrinkCircle.transform.localScale.x);
+        // Debug.Log("player distance: " + distanceToCenter);
+        // Debug.Log("circle distance: " + shrinkCircle.transform.localScale.x);
 
         // 如果距離大於 ShrinkToHalf 物件的半徑，則玩家在物件的外部
         return distanceToCenter/100 > shrinkCircle.transform.localScale.x;
@@ -77,7 +79,7 @@ public class PlayerController : MonoBehaviour
         // Vector3 size = renderer.bounds.size;
         // Debug.Log("Length of shrinkCircle: " + size.x);
 
-        Cursor.visible = false;
+        Cursor.visible = true;
         // Cursor.lockState = CursorLockMode.Locked;
         if (Input.GetMouseButton(0) || Input.GetKeyDown(KeyCode.K))
         {

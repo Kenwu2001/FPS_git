@@ -10,15 +10,49 @@ public class GameUIManager : MonoBehaviour
     public Image BlackCover;
     // public Image BloodBlur;
     public Text HPText;
+    private string resumeButton = "Resume";
+    // private string pauseButton = "PauseButton";
+    GameObject resumeButtonObject;
 
     // Use this for initialization
     void Start()
     {
         BlackCover.color = Color.black;
         DOTween.To(() => BlackCover.color, (x) => BlackCover.color = x, new Color(0, 0, 0, 0), 1f);
+        // GameObject resumeButtonObject = GameObject.Find(resumeButton);
+        resumeButtonObject = GameObject.Find(resumeButton);
+        // GameObject pauseButtonObject = GameObject.Find(pauseButton);
+
+        if (resumeButtonObject != null)
+        {
+            resumeButtonObject.SetActive(false);
+        }
     }
 
     Tweener tweenAnimation;
+    
+    public void Pause()
+    {
+        // GameObject resumeButtonObject = GameObject.Find(resumeButton);
+        // Debug.Log("hghghghghghghghghghghgh");
+        // resumeButtonObject.SetActive(true);
+        if (resumeButtonObject != null)
+        {
+            Debug.Log("hghghghghghghghghghghgh");
+            resumeButtonObject.SetActive(true);
+        }
+        // canvasMenu.enabled = true;
+        Time.timeScale = 0;
+    }
+    
+    public void Resume()
+    {
+        // GameObject resumeButtonObject = GameObject.Find(resumeButton);
+
+        resumeButtonObject.SetActive(false);
+        // canvasMenu.enabled = false;
+        Time.timeScale = 1;
+    }
 
     public void PlayHitAnimation()
     {
