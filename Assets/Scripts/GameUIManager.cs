@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameUIManager : MonoBehaviour
 {
@@ -32,7 +33,18 @@ public class GameUIManager : MonoBehaviour
     public void PlayerDiedAnimation()
     {
         // BloodBlur.color = Color.white;
-        DOTween.To(() => BlackCover.color, (x) => BlackCover.color = x, new Color(0, 0, 0, 1), 1f).SetDelay(3);
+        DOTween.To(() => BlackCover.color, (x) => BlackCover.color = x, new Color(0, 0, 0, 1), 1f).
+        SetDelay(3).
+        OnComplete(()=>
+        {
+            SceneManager.LoadScene("PrewScene");
+            // DOTween.To(() => BloodBlur.color,
+            //     (x) => BloodBlur.color = x,
+            //     new Color(1, 1, 1, 0), 0.5f).SetDelay(3).OnComplete(() =>
+            //     {
+            //         SceneManager.LoadScene("PrewScene");
+            //     });
+        });
     }
 
     public void SetHP(int hp)
